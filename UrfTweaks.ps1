@@ -64,8 +64,8 @@ if ($full) {
         $buttons = [System.Windows.Forms.MessageBoxButtons]::YesNo
         $icon = [System.Windows.Forms.MessageBoxIcon]::Warning
         $response = [System.Windows.Forms.MessageBox]::Show($message, $title, $buttons, $icon, [System.Windows.Forms.MessageBoxDefaultButton]::Button1)
-        if ($response -eq [System.Windows.Forms.DialogResult]::Yes) { $restart = $true }
+        if ($response -eq [System.Windows.Forms.DialogResult]::Yes) { $reboot = $true }
     }
 }
 # What could this mean ¯\_(ツ)_/¯
-if ($restart -and !$full) { Restart-Computer }
+if (($restart -and $full) -or $reboot) { Restart-Computer }

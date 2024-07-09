@@ -69,7 +69,7 @@ This mode aims to solve different problems within Windows, which are divided in 
 * **Remove Microsoft Teams**: as the majority of users never communicate with others through this, this app is always loading at startup, consuming unneccessary resources and collecting data.
 * **Applies Windows UI optimizations**: Disables some anoying features that Windows Explorer has and tweaks some aspects from the mouse.
 * **Optimize network**: Optimize how the system sends and receives packages from the internet and optimizes cache management.
-* **Optmize services**: Changes the startup mode for all non-essential services in Windows to prevent the system loading them everytime. Instead, the services only load when they need. Also disables some
+* **Optimize services**: Changes the startup mode for all non-essential services in Windows to prevent the system loading them everytime. Instead, the services only load when they need. Also disables some
   expendable services such as the fax service.
 * **Apply tweaks on the system**: Optimizes the `svchost.exe` file usage of memory and reduces timings when killing apps. Also ***disables power throttling***, so be aware of that if you are using a laptop!!
 * **Optimizes timer resolution**: This is an advanced configuration that let games and high-demanding applications to run with much better performance.

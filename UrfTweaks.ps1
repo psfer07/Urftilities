@@ -57,7 +57,7 @@ if ($full) {
     Write-Step "Full optimizations finished!"
     
     # Ask whether reboot or not
-    if (!$silent) {
+    if (!($silent -and $restart)) {
         Add-Type -AssemblyName System.Windows.Forms
         $title = "Urftilities has finished!"
         $message = "All the optimizations have been applied successfully. To completely settle down all this configurations, it is mandatory to restart your computer, so you can restart it now or manually later."

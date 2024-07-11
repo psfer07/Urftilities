@@ -11,11 +11,15 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 # Some customization
 $Host.UI.RawUI.BackGroundColor = 'Black'
 $Host.UI.RawUI.WindowTitle = 'Urftilities'
-Clear-Host
 
 if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
     exit 1
+}
+
+if ($silent) {
+    Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs -WindowStyle Hidden
+    exit 0
 }
 
 function Invoke-FolderScripts {
@@ -25,15 +29,23 @@ function Invoke-FolderScripts {
     }
 }
 
-if ($silent) {
-    Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs -WindowStyle Hidden
-    exit 0
-}
-
 Import-Module -DisableNameChecking "$PSScriptRoot\modules\titles.psm1"
 
 Clear-Host
+if (!($normal -or $full)) {
+    Write-Step "Select Urftilities mode"
+    Write-Host `n`n"You can choose between normal and full mode:"`n
+    Write-Host "1. Normal mode"
+    Write-Host "2. Full mode"
+    do {
+        Write-Host
+        $mode = Read-Host "Choose option"
+    } while ( $mode -notin @(1, 2) )
+    if ($mode -eq 1) { $normal = $true } else { $full = $true }
+}
+
 if ($full -and !$restart) { Write-Warning `n"Full mode selected. This will last a lot more compared to the normal mode. Reboot is highly recommended" }
+
 if ($normal) {
     Write-Step "Removing temporary files"
     Write-Host `n"--> Deleting temporary files with cleanmgr..."
@@ -49,14 +61,6 @@ if ($normal) {
     Write-Host `n"--> Removing network cache..."
     arp -d * | Out-Null; nbtstat -RR | Out-Null; ipconfig /flushdns | Out-Null; ipconfig /registerdns | Out-Null
     Write-Host "Done!"
-}
-elseif (!($normal -or $full)) {
-    Write-Step "Select Urftilities mode"
-    Write-Host `n`n"You can choose between normal and full mode:"`n
-    Write-Host "1. Normal mode"
-    Write-Host "2. Full mode"
-    $mode = Read-Host "-->"
-
 }
 if ($full) {
     Write-Step "Creating a restore point"

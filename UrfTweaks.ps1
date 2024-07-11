@@ -69,7 +69,7 @@ if ($full) {
     Checkpoint-Computer -Description "Urftilities $(Get-Date -Format 'HH:mm:ss dd-MM-yy')" -RestorePointType "MODIFY_SETTINGS"
     
     Write-Step "Running OOSU10++"
-    Start-Process -FilePath "$PSScriptRoot\privacy\OOSU10.exe" -ArgumentList "$PSScriptRoot\privacy\ooshutup10.cfg /nosrp /quiet"
+    Start-Process -FilePath "$PSScriptRoot\privacy\OOSU10.exe" -ArgumentList "`"$PSScriptRoot\privacy\ooshutup10.cfg`" /nosrp /quiet"
     
     Invoke-FolderScripts("bloatware")
     Invoke-FolderScripts("performance")

@@ -33,6 +33,7 @@ Write-Host `n"Disabling Location Tracking..."
 @("Permissions", "Overrides") |
 ForEach-Object { Set-RegistryItem -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\$_\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Value 0 }
 Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" -Name "DisableLocation", "DisableLocationScripting", "DisableWindowsLocationProvider" -Value 1
+Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Name "Value" -Value "Deny" -Type "String"
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Value 0
 
 # Disable some startup event traces (AutoLoggers)"`n

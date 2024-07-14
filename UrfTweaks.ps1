@@ -36,7 +36,7 @@ if (!($normal -or $full)) {
     Write-Step "Select Urftilities mode"
     Write-Host `n`n"You can choose between normal and full mode:"`n
     Write-Host "1. Normal mode"
-    Write-Host "2. Full mode"
+    Write-Host "2. Full mode (also executes what normal mode does too)"
     do {
         Write-Host
         $mode = Read-Host "Choose option"
@@ -46,22 +46,21 @@ if (!($normal -or $full)) {
 
 if ($full -and !$restart) { Write-Warning `n"Full mode selected. This will last a lot more compared to the normal mode. Reboot is highly recommended" }
 
-if ($normal) {
-    Write-Step "Removing temporary files"
-    Write-Host `n"--> Deleting temporary files with cleanmgr..."
-    cleanmgr.exe /VERYLOWDISK
-    Write-Host "Done!"
+Write-Step "Removing temporary files"
+Write-Host `n"--> Deleting temporary files with cleanmgr..."
+cleanmgr.exe /VERYLOWDISK
+Write-Host "Done!"
 
-    Write-Host `n"--> Removing any queued updates..."
-    Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase | Out-Null
-    Stop-Service -Name "wuauserv", "UsoSvc", "bits", "dosvc" -ErrorAction SilentlyContinue
-    Remove-Item -Path "$env:SystemRoot\SoftwareDistribution\*" -Recurse -ErrorAction SilentlyContinue
-    Write-Host "Done!"
+Write-Host `n"--> Removing any queued updates..."
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase | Out-Null
+Stop-Service -Name "wuauserv", "UsoSvc", "bits", "dosvc" -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:SystemRoot\SoftwareDistribution\*" -Recurse -ErrorAction SilentlyContinue
+Write-Host "Done!"
 
-    Write-Host `n"--> Removing network cache..."
-    arp -d * | Out-Null; nbtstat -RR | Out-Null; ipconfig /flushdns | Out-Null; ipconfig /registerdns | Out-Null
-    Write-Host "Done!"
-}
+Write-Host `n"--> Removing network cache..."
+arp -d * | Out-Null; nbtstat -RR | Out-Null; ipconfig /flushdns | Out-Null; ipconfig /registerdns | Out-Null
+Write-Host "Done!"
+
 if ($full) {
     Write-Step "Creating a restore point"
     Enable-ComputerRestore -Drive "$Env:SYSTEMDRIVE\"

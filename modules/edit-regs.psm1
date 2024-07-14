@@ -57,3 +57,22 @@ function Set-RegistryItem {
         }
     }
 }
+function Remove-RegistryItem {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position = 0, Mandatory, ValueFromPipeline)][string[]]$Path,
+        [Parameter(Position = 1)][string[]]$Name = $null
+    )
+    if ($null -eq $Name) {
+        foreach ($keyPath in $Path) {
+            Remove-Item $keyPath -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
+    else {
+        foreach ($keyPath in $Path) {
+            foreach ($keyName in $Name) {
+                Remove-ItemProperty "$keyPath\$keyName" -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}

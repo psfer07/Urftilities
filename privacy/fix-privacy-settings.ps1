@@ -56,7 +56,7 @@ Write-Host "Done!"
 Write-Host `n"Disabling diagnostic data..."
 Set-RegistryItem -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Value 0
 Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack\EventTranscriptKey" -Name "EnableEventTranscript" -Value 0
-@("userNotificationListener", "appDiagnostics") | ForEach-Object { Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\$_" -Name "Value" -Value "Deny" -Type String }
+@("userNotificationListener", "appDiagnostics") | ForEach-Object { Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\$_" -Name "Value" -Value "Deny" -Type "String" }
 Write-Host "Done!"
 
 Write-Host `n"Uninstall and remove Cortana"
@@ -78,7 +78,7 @@ $dwords = @(
     "FavoritesBarVisibility"
 )
 Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Edge" -Name $dwords -Value 1
-Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Edge" -Name "AutoplayAllowed" -Value "AllowOnce" -Type String
+Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Edge" -Name "AutoplayAllowed" -Value "AllowOnce" -Type "String"
 Set-RegistryItem -Path "$edge\Main" -Name "DoNotTrack" -Value 1
 Set-RegistryItem -Path "$edge\User\Default\SearchScopes" -Name "ShowSearchSuggestionsGlobal" -Value 0
 Set-RegistryItem -Path "$edge\FlipAhead" -Name "FPEnabled" -Value 0
@@ -166,8 +166,8 @@ Set-RegistryItem -Path "HKCU:\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer" -N
 # Chrome
 if (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe") {
     Write-Host `n"Optimizing Google Chrome..."
-    Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Google\Chrome" -Name "ChromeCleanupEnabled", "ChromeCleanupReportingEnabled", "MetricsReportingEnabled" -Type String -Value 0
-    Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\software_reporter_tool.exe" -Name "Debugger" -Type String -Value %windir%\System32\taskkill.exe 
+    Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Google\Chrome" -Name "ChromeCleanupEnabled", "ChromeCleanupReportingEnabled", "MetricsReportingEnabled" -Type "String" -Value 0
+    Set-RegistryItem -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\software_reporter_tool.exe" -Name "Debugger" -Type "String" -Value %windir%\System32\taskkill.exe 
 }
 # Firefox
 if (Test-Path "HKLM:\SOFTWARE\Mozilla\Mozilla Firefox") { Write-Host `n"Optimizing Mozilla Firefox..."; Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Mozilla\Firefox" -Name "DisableTelemetry", "DisableDefaultBrowserAgent" -Value 1 }

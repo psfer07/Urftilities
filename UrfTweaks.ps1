@@ -36,19 +36,19 @@ if (!($normal -or $full)) {
     Write-Step "Select Urftilities mode"
     Write-Host `n`n"You can choose between normal and full mode:"`n
     Write-Host "1. Normal mode"
-    Write-Host "2. Full mode (also executes what normal mode does too)"
+    Write-Host "2. Full mode (also executes the normal mode)"
     do {
         Write-Host
         $mode = Read-Host "Choose option"
     } while ( $mode -notin @(1, 2) )
     if ($mode -eq 1) { $normal = $true } else { $full = $true }
 }
-
+Clear-Host
 if ($full -and !$restart) { Write-Warning `n"Full mode selected. This will last a lot more compared to the normal mode. Reboot is highly recommended" }
 
 Write-Step "Removing temporary files"
 Write-Host `n"--> Deleting temporary files with cleanmgr..."
-cleanmgr.exe /VERYLOWDISK
+Start-Process cleanmgr.exe -ArgumentList "/VERYLOWDISK" -Wait
 Write-Host "Done!"
 
 Write-Host `n"--> Removing any queued updates..."

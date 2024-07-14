@@ -48,7 +48,7 @@ if ($full -and !$restart) { Write-Warning `n"Full mode selected. This will last 
 
 Write-Step "Removing temporary files"
 Write-Host `n"--> Deleting temporary files with cleanmgr..."
-Start-Process cleanmgr.exe -ArgumentList "/VERYLOWDISK" -Wait
+cleanmgr.exe /VERYLOWDISK
 Write-Host "Done!"
 
 Write-Host `n"--> Removing any queued updates..."

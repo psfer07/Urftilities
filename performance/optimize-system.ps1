@@ -45,11 +45,11 @@ Write-Host "Done!"
 Write-Host `n"Disabling hibernation..."
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Value 0
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" -Name "PowerThrottlingOff" -Value 1
-Set-RegistryItem -Path "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power" -Name "HibernateEnabled" -Value 0
+Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power" -Name "HibernateEnabled" -Value 0
 Write-Host "Done!"
 
 Write-Host `n"Decreasing processes kill time and menu show delay"
-Set-RegistryItem -Path "HKLM:\Control Panel\Desktop" -Name "MenuShowDelay", "MenuShowDelay", "HungAppTimeout", "AutoEndTasks", "LowLevelHooksTimeout", "WaitToKillServiceTimeout" -Value 0, 5000, 4000, 1, 00001000, 00002000
+Set-RegistryItem -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay", "AutoEndTasks", "LowLevelHooksTimeout", "WaitToKillServiceTimeout", "HungAppTimeout" -Value 0, 1, 1000, 2000, 4000
 Write-Host "Done!"
 
 Write-Host `n"Disabling Windows auto maintenance tasks..."

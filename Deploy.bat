@@ -37,9 +37,8 @@ echo ---------------------------------------------------------------------------
 echo 5. Open Urftilities in full mode.
 echo 6. Open Urftilities in full mode silently.
 choice /c 123456 /n /m ""
-set mode=%errorlevel%
 
-:: Determine the arguments based on the mode selected
+set mode=%errorlevel%
 if %mode%==6 (
     set args=-full -silent -restart
 ) else if %mode%==5 (

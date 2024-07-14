@@ -28,5 +28,5 @@ Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Name 
 $PathToInternetSettings = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections"
 $Data = (Get-ItemProperty -Path $PathToInternetSettings -Name DefaultConnectionSettings).DefaultConnectionSettings
 $Data[8] = 3
-Set-RegistryItem -Path $PathToInternetSettings -Name DefaultConnectionSettings -Value $Data
+Set-ItemProperty -Path $PathToInternetSettings -Name DefaultConnectionSettings -Value $Data
 Write-Host "Done!"

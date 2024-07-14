@@ -12,7 +12,7 @@ Import-Module -DisableNameChecking "$PSScriptRoot\..\modules\edit-regs.psm1"
 Import-Module -DisableNameChecking "$PSScriptRoot\..\modules\titles.psm1"
 
 Write-Step "Removing bloatware"
-Write-Host "--> Removing unwanted apps..."
+Write-Host `n`n"--> Removing unwanted apps..."
 
 Write-Host `n"Removing bundle packages from your system (this step usually takes a bit more time)..."
 [string]$ContentDeliveryManager = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"

@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 REM Define variables
-set "url=https://codeload.github.com/psfer07/Urftilities/zip/refs/tags/v1.0"
+set "url=https://codeload.github.com/psfer07/Urftilities/zip/refs/tags/v1.1"
 set "zipFile=%temp%\Urftilities.zip"
 set "extractTo=%userprofile%\Desktop"
 set "args="

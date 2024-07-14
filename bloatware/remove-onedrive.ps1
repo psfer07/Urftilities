@@ -42,7 +42,7 @@ Set-RegistryItem "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\OneDrive
 Write-Host "Done!"
 
 Write-Host `n"Removing OneDrive integration from Windows Explorer..."
-@("HKCR:\Wow6432Node", "HKCR:") | Foreach-Object { Set-RegistryItem "$_\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" "System.IsPinnedToNameSpaceTree" 0 }
+@("\Wow6432Node", "\") | Foreach-Object { if (Test-Path "HKCR:$_\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}") { Set-RegistryItem -Path "HKCR:$_\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" -Name "System.IsPinnedToNameSpaceTree" -Value 0 } }
 Write-Host "Done!"
 
 Write-Host `n"Preventing OneDrive to be reinstalled for new users..."

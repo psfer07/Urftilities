@@ -97,5 +97,5 @@ ForEach-Object { Set-RegistryItem -Path "$_\SOFTWARE\Policies\Microsoft\Windows\
 Write-Host "Done!"
 
 Write-Host `n"Preventing Teams to be reinstalled..."
-Set-RegistryItem -Path "HKLM\SOFTWARE\Policies\Microsoft\Office\16.0\common\officeupdate" -Name "PreventTeamsInstall" -Value 1
+Set-RegistryItem -Path "HKLM:\SOFTWARE\Policies\Microsoft\Office\16.0\common\officeupdate" -Name "PreventTeamsInstall" -Value 1
 Write-Host "Done!"

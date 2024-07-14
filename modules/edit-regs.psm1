@@ -26,16 +26,16 @@ function Set-RegistryItem {
         }
     }
     elseif ($Path.Length -eq 1) {
-        if ($Name.Length -eq $Value.Length -and $Type.Length -eq 1) {
-            for ($i = 0; $i -lt $Name.Length; $i++) {
-                if (!(Test-Path "$Path\$($Name[$i])")) { New-Item -Path "$Path\$($Name[$i])" -Force | Out-Null }
-                Set-ItemProperty -Path $Path -Name $($Name[$i]) -Value $($Value[$i]) -Type $Type -ErrorAction SilentlyContinue
-            }
-        }
-        elseif ($Value.Length -eq $Type.Length -eq 1) {
+        if ($Value.Length -eq $Type.Length -eq 1) {
             for ($i = 0; $i -lt $Name.Length; $i++) {
                 if (!(Test-Path "$Path\$($Name[$i])")) { New-Item -Path "$Path\$($Name[$i])" -Force | Out-Null }
                 Set-ItemProperty -Path $Path -Name $($Name[$i]) -Value $Value -Type $Type -ErrorAction SilentlyContinue
+            }
+        }
+        elseif ($Name.Length -eq $Value.Length -and $Type.Length -eq 1) {
+            for ($i = 0; $i -lt $Name.Length; $i++) {
+                if (!(Test-Path "$Path\$($Name[$i])")) { New-Item -Path "$Path\$($Name[$i])" -Force | Out-Null }
+                Set-ItemProperty -Path $Path -Name $($Name[$i]) -Value $($Value[$i]) -Type $Type -ErrorAction SilentlyContinue
             }
         }
         elseif ($Name.Length -eq $Value.Length -eq $Type.Length) {

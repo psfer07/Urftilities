@@ -38,7 +38,7 @@ Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Co
 
 # Disable some startup event traces (AutoLoggers)"`n
 $autoLoggerDir = "$env:PROGRAMDATA\Microsoft\Diagnosis\ETLLogs\AutoLogger"
-Remove-Item "$autoLoggerDir\AutoLogger-Diagtrack-Listener.etl" -ErrorAction SilentlyContinue
+Remove-RegistryItem "$autoLoggerDir\AutoLogger-Diagtrack-Listener.etl"
 icacls $autoLoggerDir /deny "SYSTEM:(OI)(CI)F" | Out-Null
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" -Name "Start" -Value 0
 Write-Host "Done!"

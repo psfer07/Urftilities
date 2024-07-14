@@ -135,8 +135,7 @@ foreach ($app in $apps) {
 Write-Host "Done!"
 
 Write-Host `n"Removing installing suggested apps on start menu..."
-Remove-Item -Path "$ContentDeliveryManager\Subscriptions" -Recurse -ErrorAction SilentlyContinue
-Remove-Item -Path "$ContentDeliveryManager\SuggestedApps" -Recurse -ErrorAction SilentlyContinue
+Remove-RegistryItem -Path "$ContentDeliveryManager\Subscriptions","$ContentDeliveryManager\SuggestedApps"
 Write-Host "Done!"
 
 Write-Host `n"Preventing unwanted apps from re-installing..."

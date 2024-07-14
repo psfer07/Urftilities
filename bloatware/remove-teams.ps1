@@ -85,8 +85,7 @@ Remove-Item -Include "Microsoft Teams" -Path "$env:HOMEPATH\Desktop\*", "$env:PU
 ForEach-Object { Remove-Item -Include $_ -Path "$env:APPDATA\Microsoft\Windows\Start Menu\Programs", "$env:ALLUSERSPROFILE\Microsoft\Windows\Start Menu\Programs" }
 @("TeamsPresenceAddin", "TeamsMeetingAddin") |
 ForEach-Object { Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\$_" -Recurse -ErrorAction SilentlyContinue }
-Remove-Item -Path "$env:LOCALAPPDATA\Microsoft Teams" -Recurse -ErrorAction SilentlyContinue
-Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Teams" -Recurse -ErrorAction SilentlyContinue
+Remove-RegistryItem -Path "$env:LOCALAPPDATA\Microsoft Teams", "$env:LOCALAPPDATA\Microsoft\Teams"
 Write-Host "Done!"
 
 Write-Host `n"Disabling future installations to run at startup..."

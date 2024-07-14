@@ -48,6 +48,5 @@ Set-RegistryItem -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 # Remove 3D Objects from This PC
 Write-Host "Done!"
 Write-Host `n"Removing unwanted folders..."
-Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -ErrorAction SilentlyContinue
-Remove-Item -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -ErrorAction SilentlyContinue
+@("\Wow6432Node", "\") | ForEach-Object { Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -ErrorAction SilentlyContinue }
 Write-Host "Done!"

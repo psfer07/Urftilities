@@ -61,9 +61,9 @@ function Remove-RegistryItem {
     [CmdletBinding()]
     param (
         [Parameter(Position = 0, Mandatory, ValueFromPipeline)][string[]]$Path,
-        [Parameter(Position = 1)][string[]]$Name = $null
+        [string[]]$Name = @()
     )
-    if ($null -eq $Name) {
+    if ($Name.Length -eq 0) {
         foreach ($keyPath in $Path) {
             Remove-Item $keyPath -Recurse -Force -ErrorAction SilentlyContinue
         }

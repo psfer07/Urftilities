@@ -49,6 +49,8 @@ You can get the scripts folder via command line by two ways:
 This will pop up in your desktop a command prompt window that will give you some help to launch Urftilities.
 Alternatively from using the command line, you can get Urftilities from [releases](https://github.com/psfer07/Urftilities/releases).
 
+To open it is very simple. Locate the downloaded folder (Urftilities-[versionname]) and open the deploy.bat from there.
+
 # Usage
 
 This program has two modes for execution with multiple parameters to customize its execution on your system.

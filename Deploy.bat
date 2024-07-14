@@ -4,11 +4,11 @@ setlocal enabledelayedexpansion
 REM Define variables
 set "url=https://codeload.github.com/psfer07/Urftilities/zip/refs/tags/v1.1"
 set "zipFile=%temp%\Urftilities.zip"
-set "extractTo=%userprofile%\Desktop"
+set "extractTo=%userprofile%\Desktop\Urftilities-1.1"
 set "args="
 
 if exist "%extractTo%" (
-    set /p "open=Urftilities is already located in your desktop. Do you want open it now? (y/n)"
+    set /p "open=Urftilities is already located in your desktop. Do you want open it now? (y/n) -->"
 )
 
 REM Create the Urftilities folder on Desktop
@@ -16,9 +16,9 @@ if not exist "%extractTo%" (
     mkdir "%extractTo%"
     REM Download and extracts the ZIP file using PowerShell
     powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%zipFile%'"
-    powershell -Command "Expand-Archive -Path '%zipFile%' -DestinationPath '%extractTo%' -Force"
+    powershell -Command "Expand-Archive -Path '%zipFile%' -DestinationPath '%userprofile%\Desktop' -Force"
     del "%zipFile%"
-    set /p open=Urftilities has been downloaded and extracted to your desktop. Do you want to execute it? (y/n)
+    set /p "open=Urftilities has been downloaded and extracted to your desktop. Do you want to execute it? (y/n) -->"
 )
 
 if /i "%open%" neq "y" exit /b 0
@@ -53,4 +53,4 @@ if %mode%==6 (
 ) else if %mode%==1 (
     set args=-normal
 )
-powershell -Command "%extractTo%\Urftilities-1.0\Urftweaks.ps1 %args%"
+powershell -Command "Start-Process powershell -ArgumentList '. %extractTo%\Urftweaks.ps1 %args%' -Verb RunAs"

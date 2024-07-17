@@ -129,8 +129,8 @@ $apps = @(
     "Microsoft.Advertising.Xaml"
 )
 foreach ($app in $apps) {
-    Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage -AllUsers -ErrorAction SilentlyContinue
-    Get-AppXProvisionedPackage -Online | Where-Object DisplayName -EQ $app | Remove-AppxProvisionedPackage -Online
+    Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage -AllUsers -Force -ErrorAction SilentlyContinue
+    Get-AppXProvisionedPackage -Online | Where-Object DisplayName -EQ $app | Remove-AppxProvisionedPackage -Online -Force -ErrorAction SilentlyContinue
 }
 Write-Host "Done!"
 

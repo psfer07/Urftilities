@@ -13,7 +13,7 @@ $Host.UI.RawUI.BackGroundColor = 'Black'
 $Host.UI.RawUI.WindowTitle = 'Urftilities'
 
 if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath -normal:$normal -full:$full -silent:$silent -restart:$restart`"" -Verb RunAs
     exit 1
 }
 

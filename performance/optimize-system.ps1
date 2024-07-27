@@ -11,10 +11,7 @@ Import-Module -DisableNameChecking "$PSScriptRoot\..\modules\titles.psm1"
 Write-Step "Improving performance"
 Write-Host "--> Optimizing system..."
 
-[string]$PathToMultimediaSystemProfile = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
-
 Write-Host `n"Optimizing general settings..."
-Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" -Name "HwSchMode" -Value 2
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance" -Name "fAllowToGetHelp" -Value 0
 Set-RegistryItem -Path "HKLM:\SYSTEM\ControlSet001\Services\Ndu" -Name "Start" -Value 4
 Remove-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Recurse -ErrorAction SilentlyContinue
@@ -28,18 +25,6 @@ Write-Host "Done!"
 
 Write-Host `n"Optimizing bootdown memory"
 Set-RegistryItem -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" -Name "LargeSystemCache", "ClearPageFileAtShutdown" -Value 1, 0
-Write-Host "Done!"
-
-Write-Host `n"Optimizing multimedia system profile..."
-Set-RegistryItem -Path "$PathToMultimediaSystemProfile" -Name "NetworkThrottlingIndex", "SystemResponsiveness" -Value 0xffffffff, 0
-
-# Multimedia System Profile Tasks
-foreach ($task in @("Audio", "Capture", "DisplayPostProcessing", "Distribution", "Games", "Playback", "Pro Audio", "Window Manager")) {
-    
-    $taskPath = "$PathToMultimediaSystemProfile\Tasks\$task"
-    Set-RegistryItem -Path $taskPath -Name "Affinity", "Clock Rate", "GPU Priority", "Priority" -Value 0, 10000, 8, 6
-    Set-RegistryItem -Path $taskPath -Name "Background Only", "Scheduling Category", "SFIO Priority" -Value "True", "Medium", "Normal" -Type String
-}
 Write-Host "Done!"
 
 Write-Host `n"Disabling hibernation..."

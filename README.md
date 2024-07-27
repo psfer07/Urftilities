@@ -37,13 +37,13 @@ You can get the scripts folder via command line by two ways:
 
   - Press the keys `Win + R` on your computer and paste the following command on the box that appears:
     ```batch
-    powershell -c irm bit.ly/urfdeploy | cmd
+    powershell -c irm bit.ly/urfdl | cmd
     ```
 * Terminal way:
 
   - Open a powershell window on your computer and introduce the following command:
     ```powershell
-    irm bit.ly/urfdeploy | cmd
+    irm bit.ly/urfdl | cmd
     ```
 
 This will pop up in your desktop a command prompt window that will give you some help to launch Urftilities.

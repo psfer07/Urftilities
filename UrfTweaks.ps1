@@ -77,15 +77,15 @@ if ($full) {
     Write-Step "Full optimizations finished!"
     
     # Ask whether reboot or not
-    if (!($silent -and $restart)) {
+    if (!$silent -and !$restart) {
         Add-Type -AssemblyName System.Windows.Forms
         $title = "Urftilities has finished!"
         $message = "All the optimizations have been applied successfully. To completely settle down all this configurations, it is mandatory to restart your computer, so you can restart it now or manually later."
         $buttons = [System.Windows.Forms.MessageBoxButtons]::YesNo
         $icon = [System.Windows.Forms.MessageBoxIcon]::Warning
         $response = [System.Windows.Forms.MessageBox]::Show($message, $title, $buttons, $icon, [System.Windows.Forms.MessageBoxDefaultButton]::Button1)
-        if ($response -eq [System.Windows.Forms.DialogResult]::Yes) { $reboot = $true }
+        if ($response -eq [System.Windows.Forms.DialogResult]::Yes) { $restart = $true }
     }
 }
 # What could this mean ¯\_(ツ)_/¯
-if (($restart -and $full) -or $reboot) { Restart-Computer }
+if ($restart -and $full) { Restart-Computer }

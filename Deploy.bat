@@ -2,9 +2,9 @@
 setlocal enabledelayedexpansion
 
 REM Define variables
-set "url=https://codeload.github.com/psfer07/Urftilities/zip/refs/tags/v1.1"
+set "url=https://codeload.github.com/psfer07/Urftilities/zip/refs/tags/v1.2"
 set "zipFile=%temp%\Urftilities.zip"
-set "extractTo=%userprofile%\Desktop\Urftilities-1.1"
+set "extractTo=%userprofile%\Desktop\Urftilities-1.2"
 set "args="
 
 REM Check if Urftilities is already located on the desktop

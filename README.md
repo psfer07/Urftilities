@@ -7,7 +7,6 @@ Index
 
 * [Important](#important)
 * [About the program](#about-the-program)
-* [Ways to get this program via commands](#ways-to-get-this-program-via-commands)
 * [Usage](#usage)
 * [Full features](#full-features)
 * [Ordinary features](#ordinary-features)
@@ -29,25 +28,7 @@ This proyect is oriented to improve the performance of any Windows system at the
 
 Note: you don't need to neccessarily remove the scripts that you don't want to apply. You can simply rename their extensions to any other that doesn't contain  `.ps1` on it.
 
-## Ways to get this program via commands
-
-You can get the scripts folder via command line by two ways:
-
-* Optimal way:
-
-  - Press the keys `Win + R` on your computer and paste the following command on the box that appears:
-    ```batch
-    powershell -c irm bit.ly/urfdl | cmd
-    ```
-* Terminal way:
-
-  - Open a powershell window on your computer and introduce the following command:
-    ```powershell
-    irm bit.ly/urfdl | cmd
-    ```
-
-This will pop up in your desktop a command prompt window that will give you some help to launch Urftilities.
-Alternatively from using the command line, you can get Urftilities from [releases](https://github.com/psfer07/Urftilities/releases).
+You can get Urftilities from [releases](https://github.com/psfer07/Urftilities/releases).
 
 To open it is very simple. Locate the downloaded folder (Urftilities-[versionname]) and open the deploy.bat from there.
 
